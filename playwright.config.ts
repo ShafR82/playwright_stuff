@@ -36,7 +36,7 @@ export default defineConfig({
       'User-Agent': 'ShafR82',
       'Accept': 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      'Authorization': `token ${process.env.GITHUB_API_KEY}`
+      'Authorization': `token ${process.env.PAT}`
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
