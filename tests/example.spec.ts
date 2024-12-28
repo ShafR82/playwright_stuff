@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
-// import * as dotenv from 'dotenv';
+import * as dotenv from 'dotenv';
 
-// dotenv.config();
+dotenv.config();
 
 console.log(`user = ${process.env.USER_GH}`); //loading the github repo access info as env variable
 const TestRepoName = 'TestRepo' 
