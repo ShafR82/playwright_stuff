@@ -15,6 +15,9 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
+    #Added to create .env file (chaf)
+    - name: Create .env file and inject env variables
+      run: echo "PAT=${{secrets.PAT}}" >> .env
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
