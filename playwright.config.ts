@@ -33,10 +33,10 @@ export default defineConfig({
     baseURL: 'https://api.github.com',
 
     extraHTTPHeaders: {
-      'User-Agent': 'ShafR82',
+      'User-Agent': `${process.env.USER_GH}`,
       'Accept': 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
-      'Authorization': `token ${process.env.PAT}`
+      'Authorization': `token ${process.env.PAT_GH}`
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
