@@ -38,12 +38,23 @@ test('should create a bug report', async ( { request} ) => {
   
   const newIssue = await request.post(`/repos/${process.env.USER_GH}/${TestRepoName}/issues`, {
     data: {
-        title: '[Bug] report 1',
-        body: 'False Bug - just testing the API via Playwright',
+      title: '[Bug] report 1',
+      body: 'False Bug - just testing the API via Playwright',
     }
   });
 
-  console.log(newIssue.status());
+  console.log(`Issue creation ${newIssue.status()}`);
   expect(newIssue.ok()).toBeTruthy();
+
+  const issuesFiltered = await request.get(`/repos/${process.env.USER_GH}/${TestRepoName}/issues`);
+  console.log(`Issue listing ${issuesFiltered.status()}`);
+
+  expect(await issuesFiltered.json()).toContainEqual(
+    expect.objectContaining({
+      title: '[Bug] report 1',
+      body: 'False Bug - just testing the API via Playwright',
+    })
+  );
+  
   
 });
