@@ -1,9 +1,15 @@
 import { test, expect } from '@playwright/test';
 import * as dotenv from 'dotenv';
 
-dotenv.config();
+const result = dotenv.config();
 
-console.log(`user = ${process.env.USER_GH}`); //loading the github repo access info as env variable
+if (result.error){
+  throw result.error;
+}
+else{
+  console.log(`env content: ${result.parsed}`);
+}
+
 const TestRepoName = 'TestRepo' 
 
 test.beforeAll(async ({request}) => {

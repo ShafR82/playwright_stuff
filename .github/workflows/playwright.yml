@@ -18,7 +18,7 @@ jobs:
     #Added to create .env file (chaf)
     - name: Create .env file and inject env variables
       run: 
-        echo -e "PAT_GH=${{secrets.PATH_GH}}\nUSER_GH=${{secrets.USER_GH}}" >> .env        
+        echo -e "PAT_GH=${{secrets.PAT_GH}}\nUSER_GH=${{secrets.USER_GH}}" >> .env        
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
