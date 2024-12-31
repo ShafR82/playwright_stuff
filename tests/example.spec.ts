@@ -60,6 +60,12 @@ test('should create a bug report', async ( { request, page} ) => {
   if (response){
     if(response.ok()){
       console.log(`I'm on your github profile page! ${response.status()}`);
+      await page.getByRole('link', {name : 'Repositories'}).first().click();
+      await page.getByRole('link', {name : TestRepoName}).click();
+      await page.getByRole('link', {name : 'Issues 1', exact: true}).click();
+      await page.getByPlaceholder('Search all issues').fill('is:issue is:open "[Bug] report 1" in:title');
+      await page.getByPlaceholder('Search all issues').press('Enter');
+      expect(await page.getByRole('link', { name: '[Bug] report 1', exact: true })).toHaveText('[Bug] report 1');
     }
     else{
       throw("Can't reach your github profile page!");
