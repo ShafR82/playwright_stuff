@@ -65,7 +65,7 @@ test('should create a bug report', async ( { request, page} ) => {
       await page.getByRole('link', {name : 'Issues 1', exact: true}).click();
       await page.getByPlaceholder('Search all issues').fill('is:issue is:open "[Bug] report 1" in:title');
       await page.getByPlaceholder('Search all issues').press('Enter');
-      expect(await page.getByRole('link', { name: '[Bug] report 1', exact: true })).toHaveText('[Bug] report 1');
+      expect(await page.getByRole('link', { name: '[Bug] report 1', exact: true })).toHaveText('[Bug] report 1', {timeout: 10000});
     }
     else{
       throw("Can't reach your github profile page!");
