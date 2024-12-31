@@ -34,7 +34,7 @@ test.afterAll(async ({request}) => {
 
 });
 
-test('should create a bug report', async ( { request} ) => {
+test('should create a bug report', async ( { request, page} ) => {
   
   const newIssue = await request.post(`/repos/${process.env.USER_GH}/${TestRepoName}/issues`, {
     data: {
@@ -55,6 +55,15 @@ test('should create a bug report', async ( { request} ) => {
       body: 'False Bug - just testing the API via Playwright',
     })
   );
-  
+
+  const response = await page.goto(`https://github.com/${process.env.USER_GH}`);
+  if (response){
+    if(response.ok()){
+      console.log(`I'm on your github profile page! ${response.status()}`);
+    }
+    else{
+      throw("Can't reach your github profile page!");
+    }
+  }
   
 });
