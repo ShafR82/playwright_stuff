@@ -27,7 +27,7 @@ test.describe('Login & Repositories', () => {
     await page.getByRole('button', { name: 'Sign in', exact: true }).click();
     await page.waitForLoadState();
     await page.goto(`https://github.com/${process.env.USER_GH}`);
-    const text = await page.getByRole('link', { name: /Repositories\s*\d+/ }).innerText();
+    const text = await page.getByRole('link', { name: /Repositories\s*\d+/ }).first().innerText();
     const nbRepoByUI = parseInt(text.split(' ')[2]);
 
     const response = await request.get('/user/repos');
