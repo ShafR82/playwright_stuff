@@ -27,7 +27,7 @@ test.describe('Login & Repositories', () => {
     await page.getByRole('button', { name: 'Sign in', exact: true }).click();
     await page.waitForLoadState();
     await page.goto(`https://github.com/${process.env.USER_GH}`);
-    const text = await page.getByRole('link', { name: 'Repositories' }).innerText();
+    const text = await page.getByRole('link', { name: /Repositories\s*\d+/ }).innerText();
     const nbRepoByUI = parseInt(text.split(' ')[2]);
 
     const response = await request.get('/user/repos');
@@ -93,8 +93,7 @@ test.describe('Github Issues tests', () => {
         await page.getByRole('link', {name : 'Issues 1', exact: true}).click();
         await page.getByPlaceholder('Search all issues').fill('is:issue is:open "[Bug] report 1" in:title');
         await page.getByPlaceholder('Search all issues').press('Enter');
-        await page.waitForLoadState();
-        expect(await page.getByRole('link', { name: '[Bug] report 1', exact: true })).toHaveText('[Bug] report 1');
+        expect(await page.getByRole('link', { name: '[Bug] report 1', exact: true })).toHaveText('[Bug] report 1', { timeout: 10000});
         console.log("Test Issue found on the repo's issues page. OK!")
       }
       else{
