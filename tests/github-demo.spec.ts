@@ -93,6 +93,7 @@ test.describe('Github Issues tests', () => {
         await page.getByRole('link', {name : 'Issues 1', exact: true}).click();
         await page.getByPlaceholder('Search all issues').fill('is:issue is:open "[Bug] report 1" in:title');
         await page.getByPlaceholder('Search all issues').press('Enter');
+        await page.waitForSelector('role=link[name="[Bug] report 1"]', { timeout: 15000 });
         expect(await page.getByRole('link', { name: '[Bug] report 1', exact: true })).toHaveText('[Bug] report 1', { timeout: 10000});
         console.log("Test Issue found on the repo's issues page. OK!")
       }
