@@ -50,9 +50,8 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'api-test + Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' }, // or 'chrome-beta'
-      
+      name: 'api-test & Chrome navigation',
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' }, // or 'chrome-beta'      
     }
   ]
 
