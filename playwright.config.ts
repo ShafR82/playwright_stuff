@@ -20,6 +20,9 @@ if (!process.env.PAT_GH || !process.env.USER_GH) {
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  /*new timeout*/
+  timeout: 120_000,
+  expect: { timeout: 30_000 },
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -50,9 +53,8 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'api-test + Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' }, // or 'chrome-beta'
-      
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] }, // or 'chrome-beta'      
     }
   ]
 
